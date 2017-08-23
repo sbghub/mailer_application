@@ -48,9 +48,9 @@ module.exports = {
     }, 
  
     resolve: { 
-        //tells webpack where to look for modules 
-        modulesDirectories: ['node_modules'], 
-        //extensions that should be used to resolve modules 
-        extensions: ['', '.js', '.jsx'] 
+        //tells webpack where to look for modules, not supported in our version
+        // modulesDirectories: ['node_modules'], 
+        //extensions that should be used to resolve modules, left out null ('') extension 
+        extensions: ['.js', '.jsx']
     } 
 }
