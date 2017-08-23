@@ -1,1 +1,6 @@
+__pycache__/
+*.py[cod]
+
+/assets/bundles/
+
 node_modules
