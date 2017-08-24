@@ -1,1 +1,11 @@
-{"status":"done","chunks":{"main":[{"name":"main-b3f631dbbaf3da283dcb.js","path":"/home/pb4301/Documents/git/mailer_application/assets/bundles/main-b3f631dbbaf3da283dcb.js"}]}}
+{
+    "status": "done",
+    "chunks": {
+        "main": [
+            {
+                "name": "main-ff50f125e44e39e3261e.js",
+                "path": "/home/pb4301/Documents/git/mailer_application/assets/bundles/main-ff50f125e44e39e3261e.js"
+            }
+        ]
+    }
+}
