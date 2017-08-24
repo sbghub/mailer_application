@@ -15,5 +15,7 @@ Styling, layout, and other aesthetic features is up to the developers. All shoul
 
 # Run instructions
 start @ root folder
+
 ./deploy.sh
+
 go to http://localhost:8000
