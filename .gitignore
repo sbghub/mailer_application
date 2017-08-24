@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
+local_settings.py
+db.sqlite3
 
 /assets/bundles/
-
 node_modules
+webpack-stats.*
