@@ -5,10 +5,16 @@ let EmailSender = React.createClass({
   render() {
     return (
       <div name="emailSender">
+        <div>
           <input name="sendToAddress" placeholder="to address"></input>
+        </div>
+        <div>
           <input name="subject" placeholder="subject"></input>
+        </div>
+        <div>
           <input name="emailBody" placeholder="body"></input>
-          <button name="send">Send</button>
+        </div>
+        <button name="send">Send</button>
       </div>
     )
   }
