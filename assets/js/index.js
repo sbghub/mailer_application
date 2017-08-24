@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import EmailSender from "../components/emailSender"
+import ListOfMailingLists from "../components/listOfMailingLists"
 
-var Hello = React.createClass ({
-    render: function() {
-        return (
-            <h1>
-            Hello World!
-            </h1>
-        )
-    }
+let BaseComponent = React.createClass({
+  render() {
+    return (
+      <div>
+        <ListOfMailingLists/>
+        <EmailSender/>
+      </div>
+    )
+  }
 })
 
-ReactDOM.render(<Hello />, document.getElementById('container'))
+ReactDOM.render(<BaseComponent />, document.getElementById('container'))
