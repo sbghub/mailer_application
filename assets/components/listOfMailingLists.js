@@ -3,38 +3,43 @@ import React from "react";
 
 let ListOfMailingLists = React.createClass({
 
-  getInitialState: function () {
+  getInitialState() {
     return (
-      { mailingLists: {} }
+      { mailingLists: [] }
     )
   },
 
-  addItem: function (newItem) {
-    let timestamp = (new Date()).getTime();
-    this.state.mailingLists['fruit-' + timestamp] = newItem;
-    this.setState({ mailingLists: this.state.mailingLists });
+  addItem(newItem) {
+    let newList = this.state.mailingLists;
+    newList.push(newItem);
+    this.setState({ mailingLists: newList });
   },
 
-  render: function () {
+  render() {
     return (
       <div>
         <AddListForm addItem={this.addItem} />
-        <MailingList mailingLists={this.state.mailingLists} />
+        <GroupList mailingLists={this.state.mailingLists} />
       </div>
     );
   }
 });
 
 
-let MailingList = React.createClass({
+let GroupList = React.createClass({
 
-  render: function () {
+  render() {
     return (
       <div>
         <ul>
           {
-            Object.keys(this.props.mailingLists).map(function (key) {
-              return <li>{this.props.mailingLists[key]}</li>
+            Object.keys(this.props.mailingLists).map(function (item, index) {
+              return (
+                <div>
+                  <li>{this.props.mailingLists[index]}</li>
+                  <button>Delete</button>
+                </div>
+              )
             }.bind(this))
           }
         </ul>
@@ -46,7 +51,7 @@ let MailingList = React.createClass({
 
 let AddListForm = React.createClass({
 
-  createList: function (e) {
+  createList(e) {
     e.preventDefault();
     let mailingList = this.refs.listName.value;
     if (typeof mailingList === 'string' && mailingList.length > 0) {
@@ -55,7 +60,7 @@ let AddListForm = React.createClass({
     }
   },
 
-  render: function () {
+  render() {
     return (
       <form ref="listForm" onSubmit={this.createList}>
         <button type="submit" >Add Mailing List</button>
