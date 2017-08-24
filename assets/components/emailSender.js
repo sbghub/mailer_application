@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-let EmailSender = React.createClass({
+class EmailSender extends React.Component {
   render() {
     return (
       <div name="emailSender">
@@ -18,6 +18,6 @@ let EmailSender = React.createClass({
       </div>
     )
   }
-})
+};
 
 export default EmailSender;

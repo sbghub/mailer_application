@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import EmailSender from "../components/emailSender"
 import ListOfMailingLists from "../components/listOfMailingLists"
 
-let BaseComponent = React.createClass({
+class BaseComponent extends React.Component {
   render() {
     return (
       <div>
@@ -12,6 +12,6 @@ let BaseComponent = React.createClass({
       </div>
     )
   }
-})
+};
 
 ReactDOM.render(<BaseComponent />, document.getElementById('container'))

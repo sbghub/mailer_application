@@ -22,6 +22,10 @@
     "url": "https://github.com/sbghub/mailer_application/issues"
   },
   "homepage": "https://github.com/sbghub/mailer_application#readme",
+  "dependencies": {
+    "redux": "^3.6.0",
+    "react-redux": "4.4.5"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
