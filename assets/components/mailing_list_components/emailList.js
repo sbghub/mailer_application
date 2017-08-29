@@ -2,15 +2,9 @@ import React from "react";
 
 
 let EmailList = React.createClass({
-  setInitalState() {
-    return (
-      { counter: 0 }
-    )
-  },
-
   passItem(e) {
     e.preventDefault();
-    this.props.triggerIncr;
+    this.props.triggerIncr();
     console.log("emaillist", this.props)
   },
 
