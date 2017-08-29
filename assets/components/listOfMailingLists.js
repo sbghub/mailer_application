@@ -7,7 +7,10 @@ let ListOfMailingLists = React.createClass({
 
   getInitialState() {
     return (
-      { mailingLists: [] }
+      {
+        mailingLists: [],
+        counter: 0
+      }
     )
   },
 
@@ -23,13 +26,20 @@ let ListOfMailingLists = React.createClass({
     this.setState({ mailingLists: newList });
   },
 
+  increment() {
+    this.setState({ counter: this.state.counter + 1 });
+    console.log(this.state.counter);
+  },
+
   render() {
     return (
       <div>
         <AddListForm addItem={this.addItem} />
         <GroupList
           mailingLists={this.state.mailingLists}
-          deleteItem={this.deleteItem} />
+          deleteItem={this.deleteItem}
+          counter={this.state.counter}
+          triggerIncr={this.increment} />
       </div>
     );
   }
