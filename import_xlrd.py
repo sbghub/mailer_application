@@ -27,11 +27,6 @@ def open_file(path):
     num_cols = xl_sheet.ncols 
     checkbox_cols = checkboxes.ncols
 
-    # row = xl_sheet.row(0)  # 1st row
-    # print(60*'-' + 'n(Column #) value [type]n' + 60*'-')
-    # for idx, cell_obj in enumerate(row):
-    #     cell_type_str = ctype_text.get(cell_obj.ctype, 'unknown type')
-    #     print('(%s) %s [%s]' % (idx, cell_obj.value, cell_type_str, ))
     matchValues = []
     rowVals = []
     colVals = []
@@ -55,7 +50,6 @@ def open_file(path):
             if cell_obj.value != '':
 
                 matchValues.append(cell_obj.value)
-                # matchValues.append(row_idx)
                 rowVals.append(row_idx)
                 colVals.append(col_idx)
                 cellVals.append(cell_obj.value)
@@ -68,21 +62,6 @@ def open_file(path):
 
                 print("LIST KEY VALUE")
                 print(combineVals)
-              
-                
-         
-                # combineVals.append(coordinates)
-                # # combineVals = dict(zip())
-
-                # print(coordinates)
-                # print(list_key_value)
-                # tupl = (coordinates, cell_obj.value)
-                # print(tupl)
-                # pp.pprint(dictionary)
-                # print(combineVals)
-                # allValues = dict(zip(combineVals, cellVals))
-                # print(allValues)
-                # matchValuesObj = {'Row Number': row_idx}
 
 
     pp.pprint(matchValues)
@@ -100,30 +79,6 @@ def open_file(path):
             print ('Column: [%s] cell_obj: [%s]' % (col_idx, checkboxLogic))
 
             # if checkboxLogic.value != '':
-    # row_vals = []
-    # for row_idx in range(0, xl_sheet.nrows):
-    #  for col_idx in range(0, num_cols):
-    #     cell_obj = xl_sheet.cell(row_idx, col_idx)
-    #     cell_type_str = ctype_text.get(cell_obj.ctype, 'unknown type')
-    #     print ('(row %s) %s (type:%s)' % (row_idx, cell_obj.value, cell_type_str))
-       
-        # row_vals.append(cell_obj.value)
-        
-
-
-
-    # Retrieve non-empty rows
-    # nonempty_row_vals = [x for x in row_vals if x]    
-    # num_rows_missing_vals = xl_sheet.nrows - len(nonempty_row_vals)
-    # print ('Vals: %d; Rows Missing Vals: %d' % (len(nonempty_row_vals), num_rows_missing_vals))
-
-
-    # row_vals = []
-    # for row_idx in range(0, xl_sheet.nrows):
-    #     cell_obj = xl_sheet.cell(row_idx, col_idx)
-    #     cell_type_str = ctype_text.get(cell_obj.ctype, 'unknown type')
-    #     print ('(row %s) %s (type:%s)' % (row_idx, cell_obj.value, cell_type_str))
-    #     row_vals.append(cell_obj.value)
     
     # print number of sheets
     # print(book.nsheets)
@@ -148,12 +103,8 @@ def open_file(path):
     cells = first_sheet.row_slice(rowx=0, start_colx=0, end_colx=9)
     col = first_sheet.cell(0,0)
     cols = first_sheet.col_slice(colx=2,  start_rowx=0, end_rowx=145)
-  
-
-    # pushArray.append(cols)
    
     n = 0
-
     for cell in cells:
      n += 1
     
@@ -164,26 +115,10 @@ def open_file(path):
      # print("CELLS")
      # print(cols)
      # print(json.dumps(col))
-
-  
    
     # mapp = first_sheet.cell_note_map()
     # print("MAPP", mapp)
 
-    # for col in cols:
-    #  print ("COL VALUE")
-    #  print(col.value)
-    #  print("COLS")
-    #  print(cols)
-    # read a row slice
-    # print("READING A ROW SLICE")
-    # print(first_sheet.row_slice(rowx=0,
-    #                             start_colx=0,
-    #                             end_colx=2))
- 
-
-
-#----------------------------------------------------------------------
 if __name__ == "__main__":
     path = "Global_Ordering.xlsm"
     open_file(path)
