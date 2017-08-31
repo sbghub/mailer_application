@@ -10,19 +10,24 @@ The bottom of the file has the block where the
 main methods get called when calling this file.
 '''
 
+data = {}
 
-def return_sheet_headers(sheet):
+
+def return_sheet_headers(sheet, sheet_name, sheet_obj):
 	num_cols = sheet.ncols
 	num_rows = sheet.nrows
 
 	for col in range(num_cols):
 		header_value = sheet.cell(0, col).value
+		
 		if header_value == "Field #":
+			print("Super Key: {}".format(header_value))
+
 			for row in range(num_rows):
 				value = sheet.cell(row, col).value
-				if value: print("{}  coords: ({},{})".format(value, row, col))
-
-			print("Super Key: {}".format(header_value))
+				if value and value != "Field #": 
+					sheet_obj[value] = {}
+					print("{}  coords: ({},{})".format(value, row, col))
 
 		elif header_value: 
 			print("Key: {}".format(header_value))
@@ -42,8 +47,13 @@ def scrape_excel_file(path):
 			print("{} is blank.".format(sheet))
 		else:
 			print("SHEET NAMED : {}".format(sheet))
-			sheet = xl_workbook.sheet_by_name(sheet)
-			return_sheet_headers(sheet)
+			data[sheet] = {}
+			sheet_info = xl_workbook.sheet_by_name(sheet)
+			return_sheet_headers(sheet_info, sheet, data[sheet])
+	
+	print()
+	print("Data: {}".format(data))
+	print()
 
 
 if __name__ == "__main__":
