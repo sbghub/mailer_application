@@ -13,7 +13,7 @@ main methods get called when calling this file.
 data = {}
 
 
-def return_sheet_headers(sheet, sheet_name, sheet_obj):
+def objects_within_sheet(sheet, sheet_name, sheet_obj):
 	num_cols = sheet.ncols
 	num_rows = sheet.nrows
 
@@ -21,19 +21,19 @@ def return_sheet_headers(sheet, sheet_name, sheet_obj):
 		header_value = sheet.cell(0, col).value
 		
 		if header_value == "Field #":
-			print("Super Key: {}".format(header_value))
+			# print("Super Key: {}".format(header_value))
 
 			for row in range(num_rows):
 				value = sheet.cell(row, col).value
 				if value and value != "Field #": 
 					sheet_obj[value] = {}
-					print("{}  coords: ({},{})".format(value, row, col))
 
-		elif header_value: 
-			print("Key: {}".format(header_value))
-	
-	print("Num-rows: {}".format(num_rows))
-	pass
+	# 				print("{}  coords: ({},{})".format(value, row, col))
+	# 	elif header_value: 
+	# 		print("Key: {}".format(header_value))
+	# print("Num-rows: {}".format(num_rows))
+
+	return sheet_obj
 
 
 def scrape_excel_file(path):
@@ -43,13 +43,17 @@ def scrape_excel_file(path):
 	sheet_names = xl_workbook.sheet_names()
 	
 	for sheet in sheet_names:
-		if xl_workbook.sheet_by_name(sheet).nrows == 0:
-			print("{} is blank.".format(sheet))
+		sheet_info = xl_workbook.sheet_by_name(sheet)
+
+		if sheet_info.nrows == 0:
+			print("The {} sheet is blank.".format(sheet))
+
+		elif sheet_info.nrows < 3:
+			print("The {} sheet has minimal data.".format(sheet))
+
 		else:
-			print("SHEET NAMED : {}".format(sheet))
-			data[sheet] = {}
-			sheet_info = xl_workbook.sheet_by_name(sheet)
-			return_sheet_headers(sheet_info, sheet, data[sheet])
+			# print("SHEET NAME : {}".format(sheet))
+			data[sheet] = objects_within_sheet(sheet_info, sheet, {})
 	
 	print()
 	print("Data: {}".format(data))
