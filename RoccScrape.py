@@ -5,12 +5,9 @@ from os.path import join, dirname, abspath
 from xlrd.sheet import ctype_text
 from collections import OrderedDict
 
-
 '''
-
 The bottom of the file has the block where the 
 main methods get called when calling this file.
-
 '''
 
 
@@ -20,17 +17,22 @@ def return_sheet_headers(sheet):
 
 	for col in range(num_cols):
 		header_value = sheet.cell(0, col).value
-		if header_value: 
-			print("Super Key: {}".format(header_value)) if header_value == "Field #" else print("Key: {}".format(header_value))
+		if header_value == "Field #":
+			for row in range(num_rows):
+				value = sheet.cell(row, col).value
+				if value: print("{}  coords: ({},{})".format(value, row, col))
+
+			print("Super Key: {}".format(header_value))
+
+		elif header_value: 
+			print("Key: {}".format(header_value))
 	
 	print("Num-rows: {}".format(num_rows))
 	pass
 
 
 def scrape_excel_file(path):
-
 	fname = join(dirname(dirname(abspath(__file__))), 'mailer_application', 'roccStuff.xlsx')
-
 	xl_workbook = xlrd.open_workbook(fname)
 	book = xlrd.open_workbook("roccStuff.xlsx")
 	sheet_names = xl_workbook.sheet_names()
