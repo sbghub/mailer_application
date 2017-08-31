@@ -44,10 +44,7 @@ def scrape_excel_file(path):
 	
 	for sheet in sheet_names:
 		sheet_info = xl_workbook.sheet_by_name(sheet)
-
-		# if sheet_info.nrows == 0:
-		# 	print("The {} sheet is blank.".format(sheet))
-
+		
 		if sheet_info.nrows < 3:
 			message = "The {} sheet is blank.".format(sheet) if sheet_info.nrows == 0 else "The {} sheet has minimal data.".format(sheet)
 			print(message)
