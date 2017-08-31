@@ -41,19 +41,28 @@ def scrape_excel_file(path):
 	xl_workbook = xlrd.open_workbook(fname)
 	book = xlrd.open_workbook("roccStuff.xlsx")
 	sheet_names = xl_workbook.sheet_names()
-	
+
+
 	for sheet in sheet_names:
-		if xl_workbook.sheet_by_name(sheet).nrows == 0:
-			print("{} is blank.".format(sheet))
-		else:
-			print("SHEET NAMED : {}".format(sheet))
-			data[sheet] = {}
-			sheet_info = xl_workbook.sheet_by_name(sheet)
-			return_sheet_headers(sheet_info, sheet, data[sheet])
-	
-	print()
-	print("Data: {}".format(data))
-	print()
+		print("SHEET NAMED", sheet)
+		sheet = xl_workbook.sheet_by_name(sheet)
+		return_sheet_headers(sheet)
+		numRows = sheet.nrows
+		numCols = sheet.ncols
+
+		for row_idx in range(numRows): 
+			print("FIRST ITERATION")
+			print('*'*40)
+
+			print('Row: %s' % row_idx)
+
+			for col_idx in range(0, numCols):
+
+				cell_obj = sheet.cell(row_idx, col_idx)
+
+				print ('Column: [%s] cell_obj: [%s]' % (col_idx, cell_obj.value))
+
+
 
 
 if __name__ == "__main__":
