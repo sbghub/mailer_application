@@ -5,7 +5,19 @@ from os.path import join, dirname, abspath
 from xlrd.sheet import ctype_text
 from collections import OrderedDict
 
-def open_file(path):
+
+def return_sheet_headers(sheet):
+	num_cols = sheet.ncols
+	num_rows = sheet.nrows
+
+	for col in range(num_cols):
+		header_value = sheet.cell(0, col).value
+		if header_value: print("cell param", header_value)
+	
+	print("Num-rows: ", num_rows)
+	pass
+
+def scrape_excel_file(path):
 
 	fname = join(dirname(dirname(abspath(__file__))), 'mailer_application', 'roccStuff.xlsx')
 
@@ -16,13 +28,9 @@ def open_file(path):
 	for sheet in sheet_names:
 		print("SHEET NAMED", sheet)
 		sheet = xl_workbook.sheet_by_name(sheet)
-		num_cols = sheet.ncols
+		return_sheet_headers(sheet)
 
-
-		for col in range(num_cols):
-			print("cell param", sheet.cell(0, col))
-		print("-----end-sheet-----"*3)
 
 if __name__ == "__main__":
     path = "roccStuff.xlsx"
-    open_file(path)
+    scrape_excel_file(path)
