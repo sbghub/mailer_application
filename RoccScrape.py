@@ -6,16 +6,26 @@ from xlrd.sheet import ctype_text
 from collections import OrderedDict
 
 
+'''
+
+The bottom of the file has the block where the 
+main methods get called when calling this file.
+
+'''
+
+
 def return_sheet_headers(sheet):
 	num_cols = sheet.ncols
 	num_rows = sheet.nrows
 
 	for col in range(num_cols):
 		header_value = sheet.cell(0, col).value
-		if header_value: print("cell param", header_value)
+		if header_value: 
+			print("Super Key: {}".format(header_value)) if header_value == "Field #" else print("Key: {}".format(header_value))
 	
-	print("Num-rows: ", num_rows)
+	print("Num-rows: {}".format(num_rows))
 	pass
+
 
 def scrape_excel_file(path):
 
@@ -26,9 +36,12 @@ def scrape_excel_file(path):
 	sheet_names = xl_workbook.sheet_names()
 	
 	for sheet in sheet_names:
-		print("SHEET NAMED", sheet)
-		sheet = xl_workbook.sheet_by_name(sheet)
-		return_sheet_headers(sheet)
+		if xl_workbook.sheet_by_name(sheet).nrows == 0:
+			print("{} is blank.".format(sheet))
+		else:
+			print("SHEET NAMED : {}".format(sheet))
+			sheet = xl_workbook.sheet_by_name(sheet)
+			return_sheet_headers(sheet)
 
 
 if __name__ == "__main__":
