@@ -5,4 +5,5 @@ db.sqlite3
 
 /assets/bundles/
 node_modules
-webpack-stats.*
+webpack-stats.json
+
